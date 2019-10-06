@@ -2,5 +2,5 @@
 
 [assembly: InternalsVisibleTo("VersioningDemo.DataAccess")]
 [assembly: InternalsVisibleTo("VersioningDemo")]
-[assembly: InternalsVisibleTo("RestDemoCore")]
+[assembly: InternalsVisibleTo("VersioningDemoCore")]
 
