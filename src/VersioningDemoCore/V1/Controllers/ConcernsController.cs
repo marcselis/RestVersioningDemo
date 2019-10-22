@@ -4,6 +4,7 @@ using VersioningDemoCore.Mapping;
 using VersioningDemo.Domain;
 using VersioningDemo.DataAccess;
 using ConcernModel = VersioningDemoCore.V1.Models.Concern;
+using System.Globalization;
 
 namespace VersioningDemoCore.V1.Controllers
 {
@@ -47,9 +48,15 @@ namespace VersioningDemoCore.V1.Controllers
         [ProducesResponseType( typeof( ConcernModel ), 200 )]
         [ProducesResponseType( 404 )]
         [HttpGet("{id:int}")]
-        public ConcernModel GetConcern(int id)
+        public ActionResult<ConcernModel> GetConcern(int id)
         {
-            return _outMapper.Map(DataAccess.GetConcern(id.ToString()));
+            Concern input = DataAccess.GetConcern(id.ToString("D4", CultureInfo.InvariantCulture));
+            if (input == null)
+                return NotFound();
+            ConcernModel? concern = _outMapper.Map(input);
+            if (concern == null)
+                return NotFound();
+            return concern;
         }
 
     }

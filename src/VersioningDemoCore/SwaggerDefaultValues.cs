@@ -20,6 +20,8 @@ namespace VersioningDemoCore
         /// <param name="context">The current operation filter context.</param>
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
+            if (operation == null) return;
+            if (context == null) return;
             var apiDescription = context.ApiDescription;
 
             operation.Deprecated |= apiDescription.IsDeprecated();

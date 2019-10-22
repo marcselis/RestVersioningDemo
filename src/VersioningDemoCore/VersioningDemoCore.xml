@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VersioningDemoCore</name>
+    </assembly>
+    <members>
+        <member name="T:VersioningDemoCore.ConfigureSwaggerOptions">
+            <summary>
+            Configures the Swagger generation options.
+            </summary>
+            <remarks>This allows API versioning to define a Swagger document per API version after the
+            <see cref="T:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
+        </member>
+        <member name="M:VersioningDemoCore.ConfigureSwaggerOptions.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:VersioningDemoCore.ConfigureSwaggerOptions"/> class.
+            </summary>
+            <param name="provider">The <see cref="T:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
+        </member>
+        <member name="M:VersioningDemoCore.ConfigureSwaggerOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:VersioningDemoCore.Controllers.DefaultController">
+            <summary>
+            Default controller that handles requests on root
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.Controllers.DefaultController.Options">
+            <summary>
+            Handles the HTTP OPTIONS call on root
+            </summary>
+            <returns>A 200:OK response with the supported HTTP verbs</returns>
+        </member>
+        <member name="T:VersioningDemoCore.Mapping.IMapper`2">
+            <summary>
+            Generic mapper interface to map business objects to DTO's or vice versa.
+            </summary>
+            <typeparam name="TIn">The input type to map from.</typeparam>
+            <typeparam name="TOut">The output type to map to</typeparam>
+        </member>
+        <member name="M:VersioningDemoCore.Mapping.IMapper`2.Map(`0)">
+            <summary>
+            Maps the input object to the type. 
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VersioningDemoCore.Mapping.IMapper`2.MapAll(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Maps an <see cref="T:System.Collections.Generic.IEnumerable`1"/> with input type instances to an <see cref="T:System.Collections.Generic.IEnumerable`1"/> of output types.
+            </summary>
+            <param name="input">The object to map</param>
+            <returns>The mapped result</returns>
+        </member>
+        <member name="T:VersioningDemoCore.Program">
+            <summary>
+            Represents the program
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.Program.Main(System.String[])">
+            <summary>
+            Entry point of the program
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:VersioningDemoCore.Startup">
+            <summary>
+            Represents the startup process for the application.
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:VersioningDemoCore.Startup"/> class.
+            </summary>
+            <param name="configuration">The current configuration.</param>
+        </member>
+        <member name="P:VersioningDemoCore.Startup.Configuration">
+            <summary>
+            Gets the current configuration.
+            </summary>
+            <value>The current application configuration.</value>
+        </member>
+        <member name="M:VersioningDemoCore.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures services for the application.
+            </summary>
+            <param name="services">The collection of services to configure the application with.</param>
+        </member>
+        <member name="M:VersioningDemoCore.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            Configures the application using the provided builder, hosting environment, and API version description provider.
+            </summary>
+            <param name="app">The current application builder.</param>
+            <param name="env">The hosting environment</param>
+            <param name="provider">The API version descriptor provider used to enumerate defined API versions.</param>
+        </member>
+        <member name="T:VersioningDemoCore.SwaggerDefaultValues">
+            <summary>
+            Represents the Swagger/Swashbuckle operation filter used to document the implicit API version parameter.
+            </summary>
+            <remarks>This <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter"/> is only required due to bugs in the <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator"/>.
+            Once they are fixed and published, this class can be removed.</remarks>
+        </member>
+        <member name="M:VersioningDemoCore.SwaggerDefaultValues.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
+        <member name="T:VersioningDemoCore.V1.Controllers.ConcernsController">
+            <summary>
+            Controller that handles version 1 of the Concern access
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Controllers.ConcernsController.#ctor(VersioningDemoCore.Mapping.IMapper{VersioningDemo.Domain.Concern,VersioningDemoCore.V1.Models.Concern})">
+            <summary>
+            Creates a new ConcernsController instance.
+            </summary>
+            <param name="outMapper">An <see cref="T:VersioningDemoCore.Mapping.IMapper`2"/> instance to do the mapping between the business objecs and the DTOs."</param>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Controllers.ConcernsController.GetConcerns">
+            <summary>
+            Gets a list of all available concerns
+            </summary>
+            <returns>an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containging all available concerns</returns>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Controllers.ConcernsController.GetConcern(System.Int32)">
+            <summary>
+            Returns the requested concern.
+            </summary>
+            <param name="id">The id of the concern to get.</param>
+            <returns>A <see cref="T:VersioningDemoCore.V1.Models.Concern"/> instance with the data about the requested concern.</returns>
+        </member>
+        <member name="T:VersioningDemoCore.V1.Mapping.ConcernToV1Mapper">
+            <summary>
+            Mapper class to map <see cref="T:VersioningDemo.Domain.Concern"/> business object instances to version 1 of the <see cref="T:VersioningDemoCore.V1.Models.Concern"/> DTOs.
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Mapping.ConcernToV1Mapper.Map(VersioningDemo.Domain.Concern)">
+            <summary>
+            Maps a <see cref="T:VersioningDemo.Domain.Concern"/> business object instance to a <see cref="T:VersioningDemoCore.V1.Models.Concern"/> instance.
+            </summary>
+            <param name="input">The object to map.</param>
+            <returns>A <see cref="T:VersioningDemoCore.V1.Models.Concern"/> instance.</returns>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Mapping.ConcernToV1Mapper.MapAll(System.Collections.Generic.IEnumerable{VersioningDemo.Domain.Concern})">
+            <summary>
+            Maps a enumerable list of <see cref="T:VersioningDemo.Domain.Concern"/> business object instances to an enumerable list of <see cref="T:VersioningDemoCore.V1.Models.Concern"/> instances.
+            </summary>
+            <param name="input">The list of objects to map.</param>
+            <returns>A list of <see cref="T:VersioningDemoCore.V1.Models.Concern"/> instances.</returns>
+        </member>
+        <member name="T:VersioningDemoCore.V1.Mapping.V1ToConcernMapper">
+            <summary>
+            Mapper class to map incoming instances of version 2 of the <see cref="T:VersioningDemo.Domain.Concern"/> DTO to <see cref="T:VersioningDemo.Domain.Concern"/> business objects.
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Mapping.V1ToConcernMapper.Map(VersioningDemoCore.V1.Models.Concern)">
+            <summary>
+            Maps a <see cref="T:VersioningDemoCore.V1.Models.Concern"/> DTO to a <see cref="T:VersioningDemo.Domain.Concern"/> business object.
+            </summary>
+            <param name="input">The object to map.</param>
+            <returns>The mapped <see cref="T:VersioningDemo.Domain.Concern"/> instance.</returns>
+        </member>
+        <member name="M:VersioningDemoCore.V1.Mapping.V1ToConcernMapper.MapAll(System.Collections.Generic.IEnumerable{VersioningDemoCore.V1.Models.Concern})">
+            <summary>
+            Maps a enumerable list of <see cref="T:VersioningDemoCore.V1.Models.Concern"/> DTOs to an enumerable list of <see cref="T:VersioningDemo.Domain.Concern"/> instances.
+            </summary>
+            <param name="input">The list of objects to map.</param>
+            <returns>A list of <see cref="T:VersioningDemo.Domain.Concern"/> instances.</returns>
+        </member>
+        <member name="T:VersioningDemoCore.V1.Models.Concern">
+            <summary>
+            Represents a Concern
+            </summary>
+        </member>
+        <member name="P:VersioningDemoCore.V1.Models.Concern.Number">
+            <summary>
+            The concern number
+            </summary>
+        </member>
+        <member name="P:VersioningDemoCore.V1.Models.Concern.Name">
+            <summary>
+            The name of the concern.
+            </summary>
+        </member>
+        <member name="T:VersioningDemoCore.V2.Controllers.ConcernsController">
+            <summary>
+            Controller that handles version 2 of the Concern access
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Controllers.ConcernsController.#ctor(VersioningDemoCore.Mapping.IMapper{VersioningDemo.Domain.Concern,VersioningDemoCore.V2.Models.Concern})">
+            <summary>
+            Creates a new ConcernsController instance.
+            </summary>
+            <param name="outMapper">An <see cref="T:VersioningDemoCore.Mapping.IMapper`2"/> instance to do the mapping between the business objecs and the DTOs."</param>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Controllers.ConcernsController.GetConcerns">
+            <summary>
+            Gets a list of all available concerns
+            </summary>
+            <returns>an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containging all available concerns</returns>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Controllers.ConcernsController.GetConcern(System.String)">
+            <summary>
+            Returns the requested concern.
+            </summary>
+            <param name="id">The id of the concern to get.</param>
+            <returns>A <see cref="T:VersioningDemoCore.V2.Models.Concern"/> instance with the data about the requested concern.</returns>
+        </member>
+        <member name="T:VersioningDemoCore.V2.Mapping.ConcernToV2Mapper">
+            <summary>
+            Mapper class to map <see cref="T:VersioningDemo.Domain.Concern"/> business object instances to version 2 of the <see cref="T:VersioningDemoCore.V2.Models.Concern"/> DTOs.
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Mapping.ConcernToV2Mapper.Map(VersioningDemo.Domain.Concern)">
+            <summary>
+            Maps a <see cref="T:VersioningDemo.Domain.Concern"/> business object instance to a <see cref="T:VersioningDemoCore.V2.Models.Concern"/> instance.
+            </summary>
+            <param name="input">The object to map.</param>
+            <returns>A <see cref="T:VersioningDemoCore.V2.Models.Concern"/> instance.</returns>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Mapping.ConcernToV2Mapper.MapAll(System.Collections.Generic.IEnumerable{VersioningDemo.Domain.Concern})">
+            <summary>
+            Maps a enumerable list of <see cref="T:VersioningDemo.Domain.Concern"/> business object instances to an enumerable list of <see cref="T:VersioningDemoCore.V2.Models.Concern"/> instances.
+            </summary>
+            <param name="input">The list of objects to map.</param>
+            <returns>A list of <see cref="T:VersioningDemoCore.V2.Models.Concern"/> instances.</returns>
+        </member>
+        <member name="T:VersioningDemoCore.V2.Mapping.V2ToConcernMapper">
+            <summary>
+            Mapper class to map incoming instances of version 2 of the <see cref="T:VersioningDemo.Domain.Concern"/> DTO to <see cref="T:VersioningDemo.Domain.Concern"/> business objects.
+            </summary>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Mapping.V2ToConcernMapper.Map(VersioningDemoCore.V2.Models.Concern)">
+            <summary>
+            Maps a <see cref="T:VersioningDemoCore.V2.Models.Concern"/> DTO to a <see cref="T:VersioningDemo.Domain.Concern"/> business object.
+            </summary>
+            <param name="input">The object to map.</param>
+            <returns>The mapped <see cref="T:VersioningDemo.Domain.Concern"/> instance.</returns>
+        </member>
+        <member name="M:VersioningDemoCore.V2.Mapping.V2ToConcernMapper.MapAll(System.Collections.Generic.IEnumerable{VersioningDemoCore.V2.Models.Concern})">
+            <summary>
+            Maps a enumerable list of <see cref="T:VersioningDemoCore.V2.Models.Concern"/> DTOs to an enumerable list of <see cref="T:VersioningDemo.Domain.Concern"/> instances.
+            </summary>
+            <param name="input">The list of objects to map.</param>
+            <returns>A list of <see cref="T:VersioningDemo.Domain.Concern"/> instances.</returns>
+        </member>
+        <member name="T:VersioningDemoCore.V2.Models.Concern">
+            <summary>
+            Represents a Concern
+            </summary>
+        </member>
+        <member name="P:VersioningDemoCore.V2.Models.Concern.Nr">
+            <summary>
+            The concern number
+            </summary>
+        </member>
+        <member name="P:VersioningDemoCore.V2.Models.Concern.Name">
+            <summary>
+            The name of the concern.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -10,6 +10,8 @@ namespace VersioningDemo
 {
     public class WebApiApplication : HttpApplication
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
         protected void Application_Start()
         {
             var builder = new ContainerBuilder();

@@ -38,10 +38,12 @@ namespace VersioningDemoCore
         /// <value>The current application configuration.</value>
         public IConfiguration Configuration { get; }
 
+
         /// <summary>
         /// Configures services for the application.
         /// </summary>
         /// <param name="services">The collection of services to configure the application with.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -86,11 +88,14 @@ namespace VersioningDemoCore
             services.AddSingleton<IMapper<V2.Models.Concern, Concern>>(svc => new V2ToConcernMapper());
         }
 
+
         /// <summary>
         /// Configures the application using the provided builder, hosting environment, and API version description provider.
         /// </summary>
         /// <param name="app">The current application builder.</param>
+        /// <param name="env">The hosting environment</param>
         /// <param name="provider">The API version descriptor provider used to enumerate defined API versions.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())

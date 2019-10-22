@@ -33,9 +33,9 @@ namespace VersioningDemoCore.V2.Controllers
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(typeof(IEnumerable<ConcernModel>), 200)]
-        public IEnumerable<ConcernModel> GetConcerns()
+        public ActionResult<IEnumerable<ConcernModel>> GetConcerns()
         {
-            return _outMapper.MapAll(DataAccess.GetConcerns());
+            return Ok(_outMapper.MapAll(DataAccess.GetConcerns()));
         }
 
         /// <summary>
@@ -47,9 +47,15 @@ namespace VersioningDemoCore.V2.Controllers
         [ProducesResponseType(typeof(ConcernModel), 200)]
         [ProducesResponseType(404)]
         [HttpGet("{id}")]
-        public ConcernModel GetConcern(string id)
+        public ActionResult<ConcernModel> GetConcern(string id)
         {
-            return _outMapper.Map(DataAccess.GetConcern(id));
+            Concern input = DataAccess.GetConcern(id);
+            if (input == null)
+                return NotFound();
+            ConcernModel? value = _outMapper.Map(input);
+            if (value == null)
+                return NotFound();
+            return base.Ok(value);
         }
     }
 }
